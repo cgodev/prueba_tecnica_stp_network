@@ -1,0 +1,43 @@
+<div class="container-fluid" style="background-image: url('{{background}}');">
+    <div class="container card-hero">
+        <div class="status-title">
+            <div class="row">
+                <div class="col-sm-1 status-vote">
+                    <div *ngIf="dislike" class="col-md-auto icon-dislike">
+                        <i  class="fa fa-thumbs-down"></i>
+                    </div>
+                    <div *ngIf="like" class="col-md-auto icon-like">
+                        <i *ngIf="like" class="fa fa-thumbs-up"></i>
+                    </div>
+                </div>
+                <div class="col card-title hero">
+                    {{actualHero.name}}
+                </div>
+            </div>
+        </div>
+        <div class="col text">
+            <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nobis eveniet eligendi debitis.
+            </span>
+            <div class="row aligned">
+                <div class="col-sm-8 ">
+                    <a  (click)="callHero()" class="btn btn-primary">Ver detalle</a>
+                </div>
+                <div class="col-sm-4 ">
+                    <span>1 mes atras</span><br>
+                    <span>en lorem dolor</span>
+                </div>    
+            </div>
+        </div>
+        <div class="parent">
+            <div class="bar up-vote" [style.width.%]="upPerc">
+                <i class="fa fa-thumbs-up progress-bar">&nbsp;</i>
+                <span class="perc-dislikes progress-bar icon">{{upPerc | number}} %&nbsp; </span>
+            </div>
+            <div class="bar down-vote" [style.width.%]="downPerc">
+                <span class="perc-dislikes progress-bar">&nbsp;{{downPerc | number}} % </span>
+                <i class="fa fa-thumbs-down progress-bar icon">&nbsp;</i>
+            </div>
+        </div>
+    </div>
+</div>

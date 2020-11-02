@@ -1,0 +1,93 @@
+<div style="background-image: url('{{background}}');">
+    <app-navbar></app-navbar>
+    <div class="row">
+        <div *ngIf="!unVoted" class="col-8">
+            <div class="card">
+                <div class="card-body">
+                  <div class="body-wrapper">
+                    <div class="row">
+                        <h5 class="card-title team">{{selectedHero.team}} -&nbsp;</h5>
+                        <h5 class="card-title hero">{{selectedHero.name}}</h5>
+                    </div>
+                    <div class="row">
+                        <div *ngIf="dislike" class="col-md-auto icon-dislike">
+                            <i  class="fa fa-thumbs-down"></i>
+                        </div>
+                        <div *ngIf="like" class="col-md-auto icon-like">
+                            <i *ngIf="like" class="fa fa-thumbs-up"></i>
+                        </div>
+                        
+                        <div class="col-sm">
+                           <p class="message">Tu voto ha sido registrado!</p>
+                        </div>
+                    </div>
+                    <div class="row legend">
+                        <p class="legend">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu volutpat mauris, volutpat accumsan eros. Maecenas convallis laoreet nisi sit amet pretium. Fusce condimentum nunc quis ligula viverra, a rutrum felis ultrices. Aenean commodo quam ut augue convallis, sed venenatis quam ornare. In dignissim laoreet fermentum. Aenean vulputate bibendum metus a egestas. Nunc urna libero, suscipit sit amet dictum ac, volutpat ac quam. Nullam posuere augue et sapien sagittis, eu egestas magna elementum.</p>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a (click)="restart()" class="btn btn-primary "><< Volver a votar</a>
+                    </div>
+                  </div>
+                </div> 
+            </div>
+        </div>
+        <div *ngIf="unVoted" class="col-8">
+            <div class="card">
+                <div class="card-body">
+                  <div class="body-wrapper">
+                    <h5 class="card-title opinion">Dinos tu opionon sobre</h5>
+                    <h5 class="card-title hero">{{selectedHero.name}}?</h5>
+                    <div class="row legend">
+                        <p class="legend">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eu volutpat mauris, volutpat accumsan eros. Maecenas convallis laoreet nisi sit amet pretium. Fusce condimentum nunc quis ligula viverra, a rutrum felis ultrices. Aenean commodo quam ut augue convallis, sed venenatis quam ornare. In dignissim laoreet fermentum. Aenean vulputate bibendum metus a egestas. Nunc urna libero, suscipit sit amet dictum ac, volutpat ac quam. Nullam posuere augue et sapien sagittis, eu egestas magna elementum.</p>
+                    </div>
+                    <div class="row legend">
+                        <a class="info"  target="_blank" href="{{selectedHero.info}}"><i class="fa fa-wikipedia-w">Mas informacion</i></a>
+                    </div>
+                  </div>
+                <div class="row no-bordered">
+                    <button (click)="vote(true)" type="button" class="col-sm btn btn-link like"><i class="fa fa-thumbs-up no-border"></i></button>
+                    <button (click)="vote(false)" type="button" class="col-sm btn btn-link dislike"><i class="fa fa-thumbs-down no-border"></i></button>
+                </div>
+                </div> 
+            </div>
+        </div>
+        <div class="col-8"></div>
+    </div>
+    <div class="parent">
+        <div class="bar up-vote" [style.width.%]="upPerc">
+            <i class="fa fa-thumbs-up progress-bar">&nbsp;</i>
+            <span class="perc-dislikes progress-bar icon">{{upPerc | number}} %&nbsp; </span>
+        </div>
+        <div class="bar down-vote" [style.width.%]="downPerc">
+            <span class="perc-dislikes progress-bar">&nbsp;{{downPerc | number}} % </span>
+            <i class="fa fa-thumbs-down progress-bar icon">&nbsp;</i>
+        </div>
+    </div>
+</div>
+<div class="heroes-body">
+    <div class="lorem-message" [hidden]="hidde">
+        <div class="row info-card">
+            <div class="col-sm-auto lorem-head">
+                <h5>Lorem Ipsum. Dolor</h5>
+                <h1 class="lorem-title">IP lorem ip.</h1>
+            </div>
+            <div class="col">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga eaque, rerum vel error deleniti reprehenderit optio est iste velit ullam? Recusandae autem quod deserunt laboriosam quo fugiat ipsa, illum unde.</p>
+            </div>
+            <div class="col-sm-auto">
+                <a class="btn btn-link" (click)="closeInfo()"><i class="fa fa-times exit-icon"></i></a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1 class="heroes-container">Super Heroes Anteriores</h1>
+    </div>
+    <div class="container heroes-container">
+        <div *ngFor="let hero of heroes; index as i;" class="col hero-item">
+            <app-hero-card class="item" [actualHero]="hero"  [current]="i" (currentCaller)="getHero($event)" ></app-hero-card>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+
